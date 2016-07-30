@@ -66,7 +66,7 @@ class MainSection extends Component {
         {this.renderToggleAll(completedCount)}
         <ul className="todo-list">
           {filteredTodos.map(todo =>
-            <TodoItem key={todo.id} todo={todo} {...actions} />
+            <TodoItem key={todo.id} todoId={todo.id} {...actions} />
           )}
         </ul>
         {this.renderFooter(completedCount)}

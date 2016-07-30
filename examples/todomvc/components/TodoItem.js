@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import classnames from 'classnames'
 import TodoTextInput from './TodoTextInput'
+import { connect } from 'react-redux'
 
 class TodoItem extends Component {
   constructor(props, context) {
@@ -61,10 +62,15 @@ class TodoItem extends Component {
 }
 
 TodoItem.propTypes = {
-  todo: PropTypes.object.isRequired,
   editTodo: PropTypes.func.isRequired,
   deleteTodo: PropTypes.func.isRequired,
   completeTodo: PropTypes.func.isRequired
 }
 
-export default TodoItem
+const mapStateToProps = (state, ownProps) => {
+  return {
+    todo: state.todos.find(todo => todo.id === ownProps.todoId)
+  }
+}
+
+export default connect(mapStateToProps)(TodoItem)
